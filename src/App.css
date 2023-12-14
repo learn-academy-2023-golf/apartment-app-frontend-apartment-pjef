@@ -1,0 +1,35 @@
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: rgba(100, 100, 100, 0.4);
+}
+
+footer {
+  opacity: 0.7;
+}
+
+/* *** Home Component *** */
+.home {
+  background: url(./assets/apartments.avif) no-repeat center center/cover;
+  height: 100vh;
+  /* min-height: 100%; */
+}
+
+.home .text {
+  position: relative;
+  top: 30%;
+  left: 80%;
+  transform: translate(-50%, -30%) scale(1.5);
+  font-family: cursive;
+}
+
+/* *** Not Found *** */
+
+.not-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
