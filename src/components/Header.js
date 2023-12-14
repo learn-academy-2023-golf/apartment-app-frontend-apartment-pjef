@@ -2,7 +2,7 @@ import React from "react";
 import { Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   return (
     <header>
       <Nav
@@ -16,15 +16,43 @@ const Header = () => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink className="text-light" to="/signup">
-            Sign Up
+          <NavLink className="text-light" to="/index">
+            View Listings
           </NavLink>
         </NavItem>
-        <NavItem>
-          <NavLink className="text-light" to="/signin">
-            Log In
-          </NavLink>
-        </NavItem>
+        {currentUser && (
+          <>
+            <NavItem>
+              <NavLink className="text-light" to="#">
+                My Listings
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="text-light" to="/new">
+                Create Listings
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="text-light" to="#">
+                Log Out
+              </NavLink>
+            </NavItem>
+          </>
+        )}
+        {!currentUser && (
+          <>
+            <NavItem>
+              <NavLink className="text-light" to="/signup">
+                Sign Up
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="text-light" to="/signin">
+                Log In
+              </NavLink>
+            </NavItem>
+          </>
+        )}
       </Nav>
     </header>
   );

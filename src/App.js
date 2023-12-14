@@ -1,26 +1,25 @@
-import React, { useState } from "react"
-import { Routes, Route } from 'react-router-dom'
-import mockUsers from "./mockUsers.js"
-import mockApartments from "./mockApartments.js"
-import Header from "./components/Header.js"
-import Footer from "./components/Footer.js"
-import Home from "./pages/Home.js"
-import SignUp from "./pages/Signup.js"
-import SignIn from "./pages/SignIn.js"
-import ApartmentIndex from "./pages/ApartmentIndex.js"
-import ApartmentShow from "./pages/ApartmentShow.js"
-import ApartmentNew from "./pages/ApartmentNew.js"
-import ApartmentEdit from "./pages/ApartmentEdit.js"
-import NotFound from "./pages/NotFound.js"
-
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import mockUsers from "./mockUsers.js";
+import mockApartments from "./mockApartments.js";
+import Header from "./components/Header.js";
+import Footer from "./components/Footer.js";
+import Home from "./pages/Home.js";
+import SignUp from "./pages/Signup.js";
+import SignIn from "./pages/SignIn.js";
+import ApartmentIndex from "./pages/ApartmentIndex.js";
+import ApartmentShow from "./pages/ApartmentShow.js";
+import ApartmentNew from "./pages/ApartmentNew.js";
+import ApartmentEdit from "./pages/ApartmentEdit.js";
+import NotFound from "./pages/NotFound.js";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(mockUsers[0])
-  const [apartments, setApartments] = useState(mockApartments)
+  const [currentUser, setCurrentUser] = useState(mockUsers[0]);
+  const [apartments, setApartments] = useState(mockApartments);
 
   return (
     <>
-      <Header />
+      <Header currentUser={currentUser} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -33,7 +32,7 @@ const App = () => {
       </Routes>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
