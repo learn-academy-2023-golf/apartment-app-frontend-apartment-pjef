@@ -1,24 +1,32 @@
 import React from "react";
-import { Nav, NavItem} from "reactstrap";
+import { Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-      <Nav className="d-flex justify-items-around align-items-center gap-5 w-100">
+    <header>
+      <Nav
+        role="navigation"
+        aria-label="navigation"
+        className="d-flex justify-content-around align-items-center gap-5 w-100 bg-secondary p-1"
+      >
         <NavItem>
-          <NavLink active href="#">
-            Link
+          <NavLink className="text-light" to="/">
+            Home
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Another Link</NavLink>
+          <NavLink className="text-light" to="/signup">
+            Sign Up
+          </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink disabled href="#">
-            Disabled Link
+          <NavLink className="text-light" to="/signin">
+            Log In
           </NavLink>
         </NavItem>
       </Nav>
+    </header>
   );
 };
 
