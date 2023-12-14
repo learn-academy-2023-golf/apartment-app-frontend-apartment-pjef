@@ -20,7 +20,6 @@ const App = () => {
 
   return (
     <>
-      <h3>Apartment App</h3>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
