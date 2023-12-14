@@ -8,7 +8,7 @@ const Header = ({ currentUser }) => {
       <Nav
         role="navigation"
         aria-label="navigation"
-        className="d-flex justify-content-around align-items-center gap-5 w-100 bg-secondary p-1"
+        className="d-flex justify-content-around align-items-center gap-5 w-100 p-3"
       >
         <NavItem>
           <NavLink className="text-light" to="/">
