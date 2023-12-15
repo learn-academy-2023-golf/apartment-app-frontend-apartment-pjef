@@ -11,7 +11,7 @@ let mockApartments = [
       bathrooms: 2.0,
       pets: "yes!",
       image:
-        "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
+        "https://images.unsplash.com/photo-1551361415-69c87624334f?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGFwYXJ0bWVudHN8ZW58MHx8MHx8fDA%3D",
       user_id: 1
     },
     {
@@ -26,7 +26,7 @@ let mockApartments = [
       bathrooms: 2.0,
       pets: "yes!",
       image:
-        "https://images.unsplash.com/photo-1469022563428-aa04fef9f5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80",
+        "https://images.unsplash.com/photo-1573716070395-7bd1212b94ac?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGFwYXJ0bWVudHN8ZW58MHx8MHx8fDA%3D",
       user_id: 1
     },
     {

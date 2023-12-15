@@ -12,6 +12,7 @@ import ApartmentShow from "./pages/ApartmentShow.js";
 import ApartmentNew from "./pages/ApartmentNew.js";
 import ApartmentEdit from "./pages/ApartmentEdit.js";
 import NotFound from "./pages/NotFound.js";
+import ApartmentProtectedIndex from "./pages/ApartmentProtectedIndex.js";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0]);
@@ -24,7 +25,10 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/index" element={<ApartmentIndex />} />
+        <Route path="/index" element={<ApartmentIndex apartments={apartments} />} />
+        {
+        currentUser && <Route path="/myapartments" element={<ApartmentProtectedIndex currentUser={currentUser} apartments={apartments} />} />
+        }
         <Route path="/show" element={<ApartmentShow />} />
         <Route path="/new" element={<ApartmentNew />} />
         <Route path="/edit" element={<ApartmentEdit />} />
