@@ -23,7 +23,7 @@ const Header = ({ currentUser }) => {
         {currentUser && (
           <>
             <NavItem>
-              <NavLink className="text-light" to="#">
+              <NavLink className="text-light" to="/myapartments">
                 My Listings
               </NavLink>
             </NavItem>
