@@ -25,11 +25,25 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/index" element={<ApartmentIndex apartments={apartments} />} />
-        {
-        currentUser && <Route path="/myapartments" element={<ApartmentProtectedIndex currentUser={currentUser} apartments={apartments} />} />
-        }
-        <Route path="/show" element={<ApartmentShow />} />
+        <Route
+          path="/index"
+          element={<ApartmentIndex apartments={apartments} />}
+        />
+        {currentUser && (
+          <Route
+            path="/myapartments"
+            element={
+              <ApartmentProtectedIndex
+                currentUser={currentUser}
+                apartments={apartments}
+              />
+            }
+          />
+        )}
+        <Route
+          path="/show/:id"
+          element={<ApartmentShow apartments={apartments} />}
+        />
         <Route path="/new" element={<ApartmentNew />} />
         <Route path="/edit" element={<ApartmentEdit />} />
         <Route path="*" element={<NotFound />} />

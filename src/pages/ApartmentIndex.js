@@ -40,10 +40,7 @@ const ApartmentIndex = ({ apartments }) => {
                     {apartment.bedrooms} Bedroom {apartment.bathrooms} Bath
                   </CardSubtitle>
                 </div>
-                <NavLink
-                  to={`/apartmentshow/${apartment.id}`}
-                  className="nav-link"
-                >
+                <NavLink to={`/show/${apartment.id}`} className="nav-link">
                   <Button className="apartment-button">More Details</Button>
                 </NavLink>
               </CardBody>
