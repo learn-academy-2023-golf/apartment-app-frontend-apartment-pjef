@@ -18,6 +18,10 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0]);
   const [apartments, setApartments] = useState(mockApartments);
 
+  function handleAddApartment(newApartment) {
+    setApartments((curr) => [...curr, newApartment]);
+  }
+
   return (
     <>
       <Header currentUser={currentUser} />
@@ -44,7 +48,10 @@ const App = () => {
           path="/show/:id"
           element={<ApartmentShow apartments={apartments} />}
         />
-        <Route path="/new" element={<ApartmentNew />} />
+        <Route
+          path="/new"
+          element={<ApartmentNew handleAddApartment={handleAddApartment} />}
+        />
         <Route path="/edit" element={<ApartmentEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

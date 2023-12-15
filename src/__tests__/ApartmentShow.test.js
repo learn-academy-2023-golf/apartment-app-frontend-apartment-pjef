@@ -24,8 +24,6 @@ describe("<ApartmentShow/>", () => {
 
   it("Render correct attributes", () => {
     renderShow();
-    screen.logTestingPlaygroundURL();
-
     expect(screen.getByRole("img")).toBeInTheDocument();
     expect(screen.getByText(`$${mockApartments[0].price}/month`));
     expect(screen.getByText(/101 rimrock, san diego, ca/i));
