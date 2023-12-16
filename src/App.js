@@ -22,6 +22,11 @@ const App = () => {
     setApartments((curr) => [...curr, newApartment]);
   }
 
+  const handleEditApartment = (apartment, id) => {
+    console.log(apartment.id);
+    console.log(id);
+  };
+
   return (
     <>
       <Header currentUser={currentUser} />
@@ -52,7 +57,15 @@ const App = () => {
           path="/new"
           element={<ApartmentNew handleAddApartment={handleAddApartment} />}
         />
-        <Route path="/edit" element={<ApartmentEdit />} />
+        <Route
+          path="/edit/:id"
+          element={
+            <ApartmentEdit
+              apartments={apartments}
+              handleEditApartment={handleEditApartment}
+            />
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
