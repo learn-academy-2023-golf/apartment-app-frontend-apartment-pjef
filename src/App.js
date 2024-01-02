@@ -17,6 +17,7 @@ import ApartmentProtectedIndex from "./pages/ApartmentProtectedIndex.js";
 const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0]);
   const [apartments, setApartments] = useState(mockApartments);
+  const url = "http://localhost:3000"
 
   function handleAddApartment(newApartment) {
     setApartments((curr) => [...curr, newApartment]);
@@ -27,13 +28,78 @@ const App = () => {
     console.log(id);
   };
 
+  const login = (userInfo) => {
+    fetch(`${url}/login`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("login errors: ", error))
+  }
+
+  const signup = (userInfo) => {
+    fetch(`${url}/signup`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("login errors: ", error))
+  }
+
+  const logout = () => {
+    fetch(`${url}/logout`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"), //retrieve the token
+      },
+      method: "DELETE",
+    })
+      .then((payload) => {
+        localStorage.removeItem("token") // remove the token
+        setCurrentUser(null)
+      })
+      .catch((error) => console.log("log out errors: ", error))
+  }
+  
+
+  
+  
+
   return (
     <>
-      <Header currentUser={currentUser} />
+      <Header currentUser={currentUser} logout={logout}/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp signup={signup} />} />
+        <Route path="/signin" element={<SignIn login={login} />} />
         <Route
           path="/index"
           element={<ApartmentIndex apartments={apartments} />}
