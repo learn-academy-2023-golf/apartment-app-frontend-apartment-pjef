@@ -1,4 +1,4 @@
-import { React, useRef } from 'react'
+import React, { useRef } from 'react'
 import {useNavigate } from 'react-router-dom'
 
 const Signup = ({signup}) => {
@@ -11,7 +11,7 @@ const Signup = ({signup}) => {
     const formData = new FormData(formRef.current)
     const data = Object.fromEntries(formData)
     const userInfo = {
-      user: { email: data.email, password: data.password },
+      user: { email: data.email, password: data.password, password_confirmation: data.password_confirmation}
     }
     signup(userInfo)
     navigate("/")

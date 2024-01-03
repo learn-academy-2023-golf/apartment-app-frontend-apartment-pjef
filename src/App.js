@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import mockUsers from "./mockUsers.js";
-import mockApartments from "./mockApartments.js";
+// import mockApartments from "./mockApartments.js";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Home from "./pages/Home.js";
@@ -15,9 +14,18 @@ import NotFound from "./pages/NotFound.js";
 import ApartmentProtectedIndex from "./pages/ApartmentProtectedIndex.js";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(mockUsers[0]);
-  const [apartments, setApartments] = useState(mockApartments);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [apartments, setApartments] = useState([]);
   const url = "http://localhost:3000"
+
+  console.log(currentUser)
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if (loggedInUser) {
+      setCurrentUser(JSON.parse(loggedInUser))
+    }
+  }, [])
 
   function handleAddApartment(newApartment) {
     setApartments((curr) => [...curr, newApartment]);
@@ -29,7 +37,7 @@ const App = () => {
   };
 
   const login = (userInfo) => {
-    fetch(`${url}/login`, {
+    fetch(`http://localhost:3000/login`, {
       body: JSON.stringify(userInfo),
       headers: {
         "Content-Type": "application/json",
@@ -46,13 +54,14 @@ const App = () => {
         return response.json()
       })
       .then((payload) => {
+        localStorage.setItem("user", JSON.stringify(payload))
         setCurrentUser(payload)
       })
       .catch((error) => console.log("login errors: ", error))
   }
 
-  const signup = (userInfo) => {
-    fetch(`${url}/signup`, {
+  const signUp = (userInfo) => {
+    fetch(`http://localhost:3000/signup`, {
       body: JSON.stringify(userInfo),
       headers: {
         "Content-Type": "application/json",
@@ -69,6 +78,7 @@ const App = () => {
         return response.json()
       })
       .then((payload) => {
+        localStorage.setItem("user", JSON.stringify(payload))
         setCurrentUser(payload)
       })
       .catch((error) => console.log("login errors: ", error))
@@ -87,19 +97,15 @@ const App = () => {
         setCurrentUser(null)
       })
       .catch((error) => console.log("log out errors: ", error))
-  }
-  
-
-  
-  
+    }
 
   return (
     <>
       <Header currentUser={currentUser} logout={logout}/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp signup={signup} />} />
-        <Route path="/signin" element={<SignIn login={login} />} />
+        <Route path="/signup" element={<SignUp signup={signUp} />} />
+        <Route path="/login" element={<SignIn login={login} />} />
         <Route
           path="/index"
           element={<ApartmentIndex apartments={apartments} />}
