@@ -1,8 +1,15 @@
 import React from "react";
 import { Nav, NavItem } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, logout }) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    logout()
+    navigate("/")
+  }
+
   return (
     <header>
       <Nav
@@ -33,7 +40,7 @@ const Header = ({ currentUser }) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="text-light" to="#">
+              <NavLink onClick={handleClick} className="text-light" to="#">
                 Log Out
               </NavLink>
             </NavItem>
@@ -47,7 +54,7 @@ const Header = ({ currentUser }) => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="text-light" to="/signin">
+              <NavLink className="text-light" to="/login">
                 Log In
               </NavLink>
             </NavItem>
