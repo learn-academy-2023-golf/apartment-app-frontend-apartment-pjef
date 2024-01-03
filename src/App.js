@@ -18,13 +18,14 @@ const App = () => {
   const [apartments, setApartments] = useState([]);
   const url = "http://localhost:3000"
 
-  console.log(currentUser)
+  console.log(currentUser, apartments)
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       setCurrentUser(JSON.parse(loggedInUser))
     }
+    readApartments()
   }, [])
 
   function handleAddApartment(newApartment) {
@@ -98,6 +99,26 @@ const App = () => {
       })
       .catch((error) => console.log("log out errors: ", error))
     }
+    const readApartments = () => {
+      fetch("http://localhost:3000/apartments")
+      .then(res=> res.json())
+      .then(data => setApartments(data))
+      .catch(err => console.error(err))
+    }
+    const createApartments = (apartment) => {
+      fetch("http://localhost:3000/apartments", {
+        body: JSON.stringify(apartment), 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: "POST"
+      })
+      .then(res => res.json()) 
+      .then(() => readApartments())
+      .catch(err => console.error(err))
+      
+
+    }
 
   return (
     <>
@@ -127,7 +148,7 @@ const App = () => {
         />
         <Route
           path="/new"
-          element={<ApartmentNew handleAddApartment={handleAddApartment} />}
+          element={<ApartmentNew createApartments={createApartments} currentUser={currentUser} />}
         />
         <Route
           path="/edit/:id"

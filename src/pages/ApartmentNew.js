@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 
-const ApartmentNew = ({ handleAddApartment }) => {
+const ApartmentNew = ({  createApartments, currentUser }) => {
   const navigate = useNavigate();
 
   const [newApartment, setNewApartment] = useState({
@@ -17,6 +17,7 @@ const ApartmentNew = ({ handleAddApartment }) => {
     bathrooms: "",
     pets: "",
     image: "",
+    user_id: currentUser?.id
   });
 
   const handleChange = (e) => {
@@ -24,7 +25,7 @@ const ApartmentNew = ({ handleAddApartment }) => {
   };
 
   const handleSubmit = () => {
-    handleAddApartment(newApartment);
+    createApartments(newApartment);
     navigate("/index");
   };
 
